@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://jaxgo.club/
- * @since             1.0.0
+ * @since             0.0.10
  * @package           Tjg_General
  *
  * @wordpress-plugin
  * Plugin Name:       The Johnson Group General
  * Plugin URI:        https://thejohnson.group/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Description:       Shortcodes and miscellaneous functions needed for The Johnson Group.
+ * Version:           0.0.10
  * Author:            Tyler Karle
  * Author URI:        https://jaxgo.club/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'TJG_GENERAL_VERSION', '1.0.0' );
+define( 'TJG_GENERAL_VERSION', '0.0.10' );
 
 /**
  * The code that runs during plugin activation.
@@ -71,7 +71,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-tjg-general.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since    0.0.10
  */
 function run_tjg_general() {
 

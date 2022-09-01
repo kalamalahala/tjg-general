@@ -170,9 +170,22 @@ class Tjg_General {
 
 		$plugin_public = new Tjg_General_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$action_hooks = array(
+			'wp_enqueue_scripts' => 'enqueue_styles',
+			'wp_enqueue_scripts' => 'enqueue_scripts'
+		);
+		
+		$shortcode_hooks = array(
+			'confirm_hire_button' => 'confirm_hire_button_shortcode'
+		);
 
+		foreach ( $action_hooks as $hook => $method ) {
+			$this->loader->add_action( $hook, $plugin_public, $method );
+		}
+
+		foreach ( $shortcode_hooks as $hook => $method ) {
+			$this->loader->add_shortcode( $hook, $plugin_public, $method );
+		}
 	}
 
 	/**
