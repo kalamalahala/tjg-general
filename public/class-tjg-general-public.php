@@ -101,7 +101,7 @@ class Tjg_General_Public {
 	}
 
 	function confirm_hire_button_shortcode() {
-		return '<button class="confirm-hire-button">Confirm Hire</button>';
+		return '<button class="confirm-hire-button">Confirm Hire!</button>';
 	}
 
 }
