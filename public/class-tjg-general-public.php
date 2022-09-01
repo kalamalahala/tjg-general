@@ -100,8 +100,50 @@ class Tjg_General_Public {
 
 	}
 
-	function confirm_hire_button_shortcode() {
-		return '<button class="confirm-hire-button">Confirm Hire!</button>';
+	function confirm_hire_button_shortcode( $attributes ) {
+		$atts = shortcode_atts( array(
+			'unique_id' => '',
+			'form_id' => '',
+			'field_id' => ''
+		), $attributes );
+		$unique_id = $atts['unique_id'];
+		$form_id = $atts['form_id'];
+		$field_id = $atts['field_id'];
+
+		if ( ! $unique_id ) {
+			return '<p>No unique ID provided.</p>';
+		}
+		if ( ! $atts['form_id'] ) {
+			return '<p>No form ID provided.</p>';
+		}
+		if ( ! $atts['field_id'] ) {
+			return '<p>No field ID provided.</p>';
+		}
+
+		$hire_entry_query = array(
+			'status' => 'active',
+			'field_filters' => array(
+				array(
+					'key' => $field_id,
+					'value' => $unique_id,
+				),
+			)
+		);
+
+		$hire_entry = GFAPI::get_entries( $form_id, $hire_entry_query );
+		if ( ! $hire_entry ) {
+			return '<p>No hire entry found.</p>';
+		}
+		$hire_entry = $hire_entry[0];
+
+		$output = '';
+
+		foreach ( $hire_entry as $key => $value ) {
+			$output .= '<p>' . $key . ': ' . $value . '</p>';
+		}
+
+
+		return $output . '<br><button class="confirm-hire-button">Confirm Hire!</button>';
 	}
 
 }
