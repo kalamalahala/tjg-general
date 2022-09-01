@@ -143,7 +143,7 @@ class Tjg_General_Public {
 		}
 
 
-		return $output . '<br><button class="confirm-hire-button">Confirm Hire!</button>';
+		return $output . '<br><button id="confirm-hire" class="confirm-hire-button">Confirm Hire!</button>';
 	}
 
 }

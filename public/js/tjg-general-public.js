@@ -30,3 +30,7 @@
 	 */
 
 })( jQuery );
+
+$( "#confirm-hire" ).click(function() {
+	alert( "Hire Confirmed" );
+});
