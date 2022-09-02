@@ -31,6 +31,6 @@
 
 })( jQuery );
 
-$( "#confirm-hire" ).click(function() {
-	alert( "Hire Confirmed" );
-});
+$( "#confirm-hire" ).on( "click", function() {
+	alert( "Thanks for your interest in hiring me. I will get back to you soon." );
+} );
