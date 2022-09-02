@@ -171,10 +171,10 @@ class Tjg_General {
 		$plugin_public = new Tjg_General_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$action_hooks = array(
-			'wp_enqueue_scripts' => 'enqueue_styles',
 			'wp_enqueue_scripts' => 'enqueue_scripts',
 			'wp_ajax_tjg_confirm_hire' => 'tjg_confirm_hire',
 			'wp_ajax_nopriv_tjg_confirm_hire' => 'tjg_confirm_hire',
+			'wp_enqueue_scripts' => 'enqueue_styles'
 		);
 		
 		$shortcode_hooks = array(
