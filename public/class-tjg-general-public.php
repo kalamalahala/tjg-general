@@ -73,7 +73,7 @@ class Tjg_General_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tjg-general-public.css', array(), null, 'all' );
+		wp_enqueue_style( 'tjg-general-css', plugin_dir_url( __FILE__ ) . 'css/tjg-general-public.css', array(), null, 'all' );
 
 	}
 
@@ -96,8 +96,8 @@ class Tjg_General_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tjg-general-public.js', array( 'jquery' ), $this->version, true );
-		wp_localize_script( $this->plugin_name, 'tjg_ajax_object', array(
+		wp_enqueue_script( 'tjg-general-js', plugin_dir_url( __FILE__ ) . 'js/tjg-general-public.js', array( 'jquery' ), $this->version, true );
+		wp_localize_script( 'tjg-general-js', 'tjg_ajax_object', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
 			'nonce' => wp_create_nonce( 'tjg_general_nonce' ),
 		) );
