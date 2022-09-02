@@ -1,4 +1,4 @@
-(function( $ ) {
+(function ($) {
 	'use strict';
 
 	/**
@@ -29,17 +29,25 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	$("#confirm-hire").on("click", function(e) {
+	$("#confirm-hire").on("click", function (e) {
 		e.preventDefault();
-		// var $this = $(this);
-		this.append('<div class="loading-spinner"></div>');
-		this.append('<div class="loading-spinner-overlay"></div>');
-		this.addClass("disabled");
-		this.attr("disabled", "disabled");
-		this.append('<p>Please wait...</p>');
+		$.ajax({
+			url: tjg_ajax_object.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'tjg_confirm_hire',
+				nonce: tjg_ajax_object.nonce,
+				hello: 'world'
+			},
+			success: function (response) {
+				console.log(response);
+			},
+			error: function (error) {
+				console.log(error);
+			}});
 	});
 
-})( jQuery );
+})(jQuery);
 
 // jQuery( "#confirm-hire" ).on( "click", function() {
 // 	alert( "Thanks for your interest in hiring me. I will get back to you soon." );

@@ -97,7 +97,10 @@ class Tjg_General_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tjg-general-public.js', array( 'jquery' ), $this->version, true );
-
+		wp_localize_script( $this->plugin_name, 'tjg_ajax_object', array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'tjg_general_nonce' ),
+		) );
 	}
 
 	function confirm_hire_button_shortcode( $attributes ) {
@@ -144,6 +147,15 @@ class Tjg_General_Public {
 
 
 		return $output . '<br><button id="confirm-hire" class="confirm-hire-button">Confirm New Button Hire!</button>';
+	}
+
+	function tjg_confirm_hire() {
+		$nonce = $_POST['nonce'];
+		if ( ! wp_verify_nonce( $nonce, 'tjg_general_nonce' ) ) {
+			die( 'Invalid nonce.' );
+		}
+
+		return 'Ajax works!';
 	}
 
 }
