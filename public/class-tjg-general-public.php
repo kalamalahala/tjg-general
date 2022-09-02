@@ -146,7 +146,7 @@ class Tjg_General_Public {
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
 
 		$output = '<div class="tjg-hire-container"><p class="tjg-hire-status">Status: <span class="tjg-hire-status-text">' . $candidate_status . '</span></p><p>
-		<a class="tjg-confirm-hire-button" data-uid="' . $candidate_uid . ' data-form-id="' . $form_id . '" data-field-id="' . $field_id . '">Confirm ' . $candidate_full_name . '</a>
+		<a class="tjg-confirm-hire-button" data-uid="' . $candidate_uid . '" data-form-id="' . $form_id . '" data-field-id="' . $field_id . '">Confirm ' . $candidate_full_name . '</a>
 		</p></div>';
 
 		return $output;
