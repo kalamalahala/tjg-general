@@ -2,3 +2,42 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.tjg-hire-container {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}
+
+.tjg-confirm-hire-button:hover {
+    background-color: #e1e1e1;
+}
+
+.tjg-confirm-hire-button:active {
+    background-color: #d1d1d1;
+}
+.tjg-confirm-hire-button {
+    display: inline-block;
+    margin: 0;
+    padding: 8px 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #ccc;
+    cursor: pointer;
+    font-size: 0.65em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4CAF50;
+}
+
+.tjg-hire-status {
+    font-size: 0.7em;
+    color: #000;
+    margin-bottom: 0;
+}
+
+.tjg-hire-status-text {
+    font-weight: bold;
+}

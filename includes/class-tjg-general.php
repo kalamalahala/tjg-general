@@ -171,16 +171,30 @@ class Tjg_General {
 		$plugin_public = new Tjg_General_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$action_hooks = array(
-			'wp_enqueue_scripts' => 'enqueue_styles',
-			'wp_enqueue_scripts' => 'enqueue_scripts'
+			'scripts' => array(
+				'hook' => 'wp_enqueue_scripts',
+				'callback' => 'enqueue_scripts',
+			),
+			'styles' => array(
+				'hook' => 'wp_enqueue_scripts',
+				'callback' => 'enqueue_styles'
+			),
+			'ajax' => array(
+				'hook' => 'wp_ajax_tjg_confirm_hire',
+				'callback' => 'tjg_confirm_hire'
+			),
+			'ajax_nopriv' => array(
+				'hook' => 'wp_ajax_nopriv_tjg_confirm_hire',
+				'callback' => 'tjg_confirm_hire'
+			)
 		);
 		
 		$shortcode_hooks = array(
 			'confirm_hire_button' => 'confirm_hire_button_shortcode'
 		);
 
-		foreach ( $action_hooks as $hook => $method ) {
-			$this->loader->add_action( $hook, $plugin_public, $method );
+		foreach ( $action_hooks as $action => $script ) {
+			$this->loader->add_action( $script['hook'], $plugin_public, $script['callback'] );
 		}
 
 		foreach ( $shortcode_hooks as $hook => $method ) {

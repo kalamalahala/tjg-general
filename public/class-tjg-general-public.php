@@ -73,8 +73,7 @@ class Tjg_General_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tjg-general-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( 'tjg-general-css', plugin_dir_url( __FILE__ ) . 'css/tjg-general-public.css', array(), null, 'all' );
 	}
 
 	/**
@@ -96,12 +95,99 @@ class Tjg_General_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tjg-general-public.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script( 'tjg-general-js', plugin_dir_url( __FILE__ ) . 'js/tjg-general-public.js', array( 'jquery' ), $this->version, true );
+		wp_localize_script( 'tjg-general-js', 'tjg_ajax_object', array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'tjg_general_nonce' ),
+		) );
 	}
 
-	function confirm_hire_button_shortcode() {
-		return '<button class="confirm-hire-button">Confirm Hire</button>';
+	function confirm_hire_button_shortcode( $attributes ) {
+		$atts = shortcode_atts( array(
+			'unique_id' => '',
+			'form_id' => '',
+			'field_id' => ''
+		), $attributes );
+		$unique_id = $atts['unique_id'];
+		$form_id = $atts['form_id'];
+		$field_id = $atts['field_id'];
+
+		if ( ! $unique_id ) {
+			return '<p>No unique ID provided.</p>';
+		}
+		if ( ! $atts['form_id'] ) {
+			return '<p>No form ID provided.</p>';
+		}
+		if ( ! $atts['field_id'] ) {
+			return '<p>No field ID provided.</p>';
+		}
+
+		$hire_entry_query = array(
+			'status' => 'active',
+			'field_filters' => array(
+				array(
+					'key' => $field_id,
+					'value' => $unique_id,
+				),
+			)
+		);
+
+		$hire_entry = GFAPI::get_entries( $form_id, $hire_entry_query );
+		if ( ! $hire_entry ) {
+			return '<p>No hire entry found.</p>';
+		}
+		$candidate_entry = $hire_entry[0];
+
+		$candidate_uid = $candidate_entry[$field_id];
+		$candidate_first_name = $candidate_entry['3.3'];
+		$candidate_last_name = $candidate_entry['3.6'];
+		$candidate_status = $candidate_entry['33'];
+
+		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
+
+		$output = '<div class="tjg-hire-container"><p class="tjg-hire-status">Status: <span class="tjg-hire-status-text">' . $candidate_status . '</span></p><p>
+		<a class="tjg-confirm-hire-button" data-uid="' . $candidate_uid . '" data-form-id="' . $form_id . '" data-field-id="' . $field_id . '">Confirm ' . $candidate_full_name . '</a>
+		</p></div>';
+
+		return $output;
+	}
+
+	function tjg_confirm_hire() {
+		$nonce = $_REQUEST['nonce'];
+		if ( ! wp_verify_nonce( $nonce, 'tjg_general_nonce' ) ) {
+			die( 'Invalid nonce.' );
+		}
+		$ajax_uid = $_REQUEST['uid'];
+		$ajax_form_id = $_REQUEST['form_id'];
+		$ajax_field_id = $_REQUEST['field_id'];
+
+		$hire_entry_query = array(
+			'status' => 'active',
+			'field_filters' => array(
+				array(
+					'key' => $ajax_field_id,
+					'value' => $ajax_uid,
+				),
+			)
+		);
+
+		$hire_entry = GFAPI::get_entries( $ajax_form_id, $hire_entry_query );
+		if ( ! $hire_entry ) {
+			die( 'No hire entry found.' );
+		}
+
+		$candidate_entry = $hire_entry[0];
+		$candidate_uid = $candidate_entry[$ajax_field_id];
+		$candidate_first_name = $candidate_entry['3.3'];
+		$candidate_last_name = $candidate_entry['3.6'];
+		$candidate_status = $candidate_entry['33'];
+		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
+
+		echo 'Hire confirmed for ' . $candidate_full_name . '.';
+		echo 'Status: ' . $candidate_status;
+		echo 'UID: ' . $candidate_uid;
+		
+		die();
 	}
 
 }
