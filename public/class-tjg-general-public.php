@@ -150,12 +150,13 @@ class Tjg_General_Public {
 	}
 
 	function tjg_confirm_hire() {
-		$nonce = $_POST['nonce'];
+		$nonce = $_REQUEST['nonce'];
 		if ( ! wp_verify_nonce( $nonce, 'tjg_general_nonce' ) ) {
 			die( 'Invalid nonce.' );
 		}
 
-		return 'Ajax works!';
+		echo 'Ajax works!';
+		die();
 	}
 
 }
