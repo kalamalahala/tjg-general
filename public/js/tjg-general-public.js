@@ -29,7 +29,7 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	$("#confirm-hire").on("click", function (e) {
+	$(".tjg-confirm-hire-button").on("click", function (e) {
 		e.preventDefault();
 		var uid = $(this).data("uid");
 		$.ajax({
