@@ -29,9 +29,15 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	$(document).ready(function() {
-		alert('Hello world!');
-	});
+	$("#confirm-hire").on("click", function(e) {
+		var $this = $(this);
+		this.blur();
+		e.preventDefault();
+	}).confirm({
+		text: "Are you sure you want to hire this freelancer?",
+		title: "Confirm Hire",
+		confirm: function(button) {
+		}});
 
 })( jQuery );
 
