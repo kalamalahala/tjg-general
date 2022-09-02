@@ -173,8 +173,8 @@ class Tjg_General {
 		$action_hooks = array(
 			'wp_enqueue_scripts' => 'enqueue_styles',
 			'wp_enqueue_scripts' => 'enqueue_scripts',
-			'wp_ajax_confirm_hire' => 'tjg_confirm_hire',
-			'wp_ajax_nopriv_confirm_hire' => 'tjg_confirm_hire',
+			'wp_ajax_tjg_confirm_hire' => 'tjg_confirm_hire',
+			'wp_ajax_nopriv_tjg_confirm_hire' => 'tjg_confirm_hire',
 		);
 		
 		$shortcode_hooks = array(
