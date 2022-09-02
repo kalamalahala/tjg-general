@@ -31,13 +31,14 @@
 
 	$("#confirm-hire").on("click", function (e) {
 		e.preventDefault();
+		var uid = $(this).data("uid");
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
 			type: 'POST',
 			data: {
 				action: 'tjg_confirm_hire',
 				nonce: tjg_ajax_object.nonce,
-				hello: 'world'
+				uid: uid
 			},
 			success: function (response) {
 				console.log(response);
