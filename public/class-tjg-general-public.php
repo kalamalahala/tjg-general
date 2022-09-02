@@ -74,7 +74,8 @@ class Tjg_General_Public {
 		 */
 
 		wp_enqueue_style( 'tjg-general-css', plugin_dir_url( __FILE__ ) . 'css/tjg-general-public.css', array(), null, 'all' );
-		error_log('tjg-general-css enqueued');
+
+		do_action('qm/debug', 'tjg-general-css enqueued');
 
 	}
 
