@@ -20,20 +20,21 @@
 .tjg-confirm-hire-button {
     display: inline-block;
     margin: 0;
-    padding: 10px 20px;
+    padding: 8px 12px;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 15px;
     box-shadow: 0 0 5px #ccc;
     cursor: pointer;
-    font-size: 1.2em;
+    font-size: 0.8em;
     font-weight: bold;
     color: #fff;
     background-color: #4CAF50;
 }
 
 .tjg-hire-status {
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-weight: bold;
     color: #000;
+    margin-bottom: 0;
 }
