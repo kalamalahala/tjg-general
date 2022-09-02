@@ -30,14 +30,14 @@
 	 */
 
 	$("#confirm-hire").on("click", function(e) {
-		var $this = $(this);
-		this.blur();
 		e.preventDefault();
-	}).confirm({
-		text: "Are you sure you want to hire this freelancer?",
-		title: "Confirm Hire",
-		confirm: function(button) {
-		}});
+		// var $this = $(this);
+		this.append('<div class="loading-spinner"></div>');
+		this.append('<div class="loading-spinner-overlay"></div>');
+		this.addClass("disabled");
+		this.attr("disabled", "disabled");
+		this.append('<p>Please wait...</p>');
+	});
 
 })( jQuery );
 
