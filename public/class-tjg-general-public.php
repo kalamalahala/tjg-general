@@ -156,6 +156,10 @@ class Tjg_General_Public {
 		}
 
 		echo 'Ajax works!';
+		print_r( $_REQUEST );
+		print_r( $_POST );
+		echo 'Nonce: ' . $nonce;
+		echo 'Nonce check: ' . wp_verify_nonce( $nonce, 'tjg_general_nonce' );
 		die();
 	}
 
