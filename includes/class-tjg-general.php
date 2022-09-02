@@ -182,6 +182,7 @@ class Tjg_General {
 		);
 
 		foreach ( $action_hooks as $hook => $method ) {
+			do_action('qm/debug', $hook . ' ' . $method);
 			$this->loader->add_action( $hook, $plugin_public, $method );
 		}
 
