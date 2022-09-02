@@ -194,8 +194,6 @@ class Tjg_General {
 		);
 
 		foreach ( $action_hooks as $action => $script ) {
-
-			do_action('qm/debug', $script['hook'] . ' ' . $script['callback']);
 			$this->loader->add_action( $script['hook'], $plugin_public, $script['callback'] );
 		}
 
