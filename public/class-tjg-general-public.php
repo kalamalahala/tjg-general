@@ -139,8 +139,8 @@ class Tjg_General_Public {
 		$candidate_entry = $hire_entry[0];
 
 		$candidate_uid = $candidate_entry[$field_id];
-		$candidate_first_name = $candidate_entry['12.3'];
-		$candidate_last_name = $candidate_entry['12.6'];
+		$candidate_first_name = $candidate_entry['3.3'];
+		$candidate_last_name = $candidate_entry['3.6'];
 		$candidate_status = $candidate_entry['33'];
 
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
