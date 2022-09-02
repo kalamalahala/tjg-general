@@ -22,21 +22,8 @@
 .tjg-hire-container:active {
     background-color: #d1d1d1;
 }
-
-.tjg-hire-container .tjg-hire-status {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #ccc;
-}
-
 .tjg-confirm-hire-button {
     display: inline-block;
-    width: 100%;
     margin: 0;
     padding: 0;
     text-align: center;
