@@ -171,10 +171,11 @@ class Tjg_General {
 		$plugin_public = new Tjg_General_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$action_hooks = array(
+			'' => '',
 			'wp_enqueue_scripts' => 'enqueue_scripts',
+			'wp_enqueue_scripts' => 'enqueue_styles',
 			'wp_ajax_tjg_confirm_hire' => 'tjg_confirm_hire',
-			'wp_ajax_nopriv_tjg_confirm_hire' => 'tjg_confirm_hire',
-			'wp_enqueue_scripts' => 'enqueue_styles'
+			'wp_ajax_nopriv_tjg_confirm_hire' => 'tjg_confirm_hire'
 		);
 		
 		$shortcode_hooks = array(
@@ -182,6 +183,10 @@ class Tjg_General {
 		);
 
 		foreach ( $action_hooks as $hook => $method ) {
+			if ($hook == '') { 
+				do_action('qm/debug', 'empty array item skipped');
+				continue; 
+			}
 			do_action('qm/debug', $hook . ' ' . $method);
 			$this->loader->add_action( $hook, $plugin_public, $method );
 		}
