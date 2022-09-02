@@ -29,8 +29,12 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	$(document).ready(function() {
+		alert('Hello world!');
+	});
+
 })( jQuery );
 
-jQuery( "#confirm-hire" ).on( "click", function() {
-	alert( "Thanks for your interest in hiring me. I will get back to you soon." );
-} );
+// jQuery( "#confirm-hire" ).on( "click", function() {
+// 	alert( "Thanks for your interest in hiring me. I will get back to you soon." );
+// } );
