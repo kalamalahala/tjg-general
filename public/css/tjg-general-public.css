@@ -8,30 +8,28 @@
     margin: 0 auto;
     padding: 0;
     text-align: center;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #ccc;
-    cursor: pointer;
 }
 
-.tjg-hire-container:hover {
+.tjg-confirm-hire-button:hover {
     background-color: #e1e1e1;
 }
 
-.tjg-hire-container:active {
+.tjg-confirm-hire-button:active {
     background-color: #d1d1d1;
 }
 .tjg-confirm-hire-button {
     display: inline-block;
     margin: 0;
-    padding: 0;
+    padding: 10px 20px;
     text-align: center;
-    background-color: #f1f1f1;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 0 5px #ccc;
     cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4CAF50;
 }
 
 .tjg-hire-status {
