@@ -98,6 +98,8 @@ class Tjg_General_Public {
 		 * class.
 		 */
 
+		do_action('qm/debug', 'tjg-general-js enqueued');
+
 		wp_enqueue_script( 'tjg-general-js', plugin_dir_url( __FILE__ ) . 'js/tjg-general-public.js', array( 'jquery' ), $this->version, true );
 		wp_localize_script( 'tjg-general-js', 'tjg_ajax_object', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
