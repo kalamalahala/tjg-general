@@ -32,13 +32,17 @@
 	$(".tjg-confirm-hire-button").on("click", function (e) {
 		e.preventDefault();
 		var uid = $(this).data("uid");
+		var field_id = $(this).data("field-id");
+		var form_id = $(this).data("form-id");
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
 			type: 'POST',
 			data: {
 				action: 'tjg_confirm_hire',
 				nonce: tjg_ajax_object.nonce,
-				uid: uid
+				uid: uid,
+				field_id: field_id,
+				form_id: form_id
 			},
 			success: function (response) {
 				console.log(response);

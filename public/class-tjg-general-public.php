@@ -146,7 +146,7 @@ class Tjg_General_Public {
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
 
 		$output = '<div class="tjg-hire-container"><p class="tjg-hire-status">Status: <span class="tjg-hire-status-text">' . $candidate_status . '</span></p><p>
-		<a class="tjg-confirm-hire-button" data-uid="' . $candidate_uid . '">Confirm ' . $candidate_full_name . '</a>
+		<a class="tjg-confirm-hire-button" data-uid="' . $candidate_uid . ' data-form-id="' . $form_id . '" data-field-id="' . $field_id . '">Confirm ' . $candidate_full_name . '</a>
 		</p></div>';
 
 		return $output;
@@ -157,12 +157,36 @@ class Tjg_General_Public {
 		if ( ! wp_verify_nonce( $nonce, 'tjg_general_nonce' ) ) {
 			die( 'Invalid nonce.' );
 		}
+		$ajax_uid = $_REQUEST['uid'];
+		$ajax_form_id = $_REQUEST['form_id'];
+		$ajax_field_id = $_REQUEST['field_id'];
 
-		echo 'Ajax works!';
-		print_r( $_REQUEST );
-		print_r( $_POST );
-		echo 'Nonce: ' . $nonce;
-		echo 'Nonce check: ' . wp_verify_nonce( $nonce, 'tjg_general_nonce' );
+		$hire_entry_query = array(
+			'status' => 'active',
+			'field_filters' => array(
+				array(
+					'key' => $ajax_field_id,
+					'value' => $ajax_uid,
+				),
+			)
+		);
+
+		$hire_entry = GFAPI::get_entries( $ajax_form_id, $hire_entry_query );
+		if ( ! $hire_entry ) {
+			die( 'No hire entry found.' );
+		}
+
+		$candidate_entry = $hire_entry[0];
+		$candidate_uid = $candidate_entry[$ajax_field_id];
+		$candidate_first_name = $candidate_entry['3.3'];
+		$candidate_last_name = $candidate_entry['3.6'];
+		$candidate_status = $candidate_entry['33'];
+		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
+
+		echo 'Hire confirmed for ' . $candidate_full_name . '.';
+		echo 'Status: ' . $candidate_status;
+		echo 'UID: ' . $candidate_uid;
+		
 		die();
 	}
 
