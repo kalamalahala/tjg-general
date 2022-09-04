@@ -38,6 +38,9 @@
 		// select table row
 		var $row = $(this).closest("tr");
 
+		// fade row out
+		$row.fadeOut();
+
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
 			type: 'POST',
