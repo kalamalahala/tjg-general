@@ -37,6 +37,7 @@
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
 			type: 'POST',
+			dataType: 'json',
 			data: {
 				action: 'tjg_confirm_hire',
 				nonce: tjg_ajax_object.nonce,
@@ -46,11 +47,9 @@
 			},
 			success: function (response) {
 				// console log each key in the response object
-				for (var key in response) {
-					if (response.hasOwnProperty(key)) {
-						console.log(key + " -> " + response[key]);
-					}
-				}
+				$.each(response, function (key, value) {
+					console.log(key + ': ' + value);
+				});
 			},
 			error: function (response) {
 				console.log(response);
