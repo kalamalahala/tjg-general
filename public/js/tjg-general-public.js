@@ -45,11 +45,14 @@
 				form_id: form_id
 			},
 			success: function (response) {
-				console.log(response);
+				Object.keys(response).forEach(function (key) {
+					console.log(key, response[key])
+				});
 			},
-			error: function (error) {
-				console.log(error);
-			}});
+			error: function (response) {
+				console.log(response);
+			}
+		});
 	});
 
 })(jQuery);
