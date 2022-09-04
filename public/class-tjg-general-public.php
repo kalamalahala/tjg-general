@@ -183,11 +183,22 @@ class Tjg_General_Public {
 		$candidate_status = $candidate_entry['33'];
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
 
-		echo 'Hire confirmed for ' . $candidate_full_name . '.';
-		echo 'Status: ' . $candidate_status;
-		echo 'UID: ' . $candidate_uid;
+		// Set status to "Candidate Approved"
+		$candidate_entry['33'] = 'Candidate Approved';
+
+		// Update entry using GFAPI
+		// $updated_entry = GFAPI::update_entry( $candidate_entry );
+
+		$output = json_encode( array(
+			'uid' => $candidate_uid,
+			'first_name' => $candidate_first_name,
+			'last_name' => $candidate_last_name,
+			'full_name' => $candidate_full_name,
+			'status' => $candidate_status,
+		) );
+
+		die( $output );
 		
-		die();
 	}
 
 }
