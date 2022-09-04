@@ -58,8 +58,13 @@
 					console.log(key + ': ' + value);
 				});
 
-				// remove row from table
-				$row.remove();
+				// if the response is true, remove the row
+				if (response.success) {
+					// add success message in new row below
+					$row.after('<tr><td colspan="5" class="tjg-success-message">' + response.data + '</td></tr>');
+					$row.remove();
+				}
+
 			},
 			error: function (response) {
 				console.log('error');
