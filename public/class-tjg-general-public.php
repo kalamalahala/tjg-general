@@ -197,7 +197,8 @@ class Tjg_General_Public {
 			'status' => $candidate_status,
 		) );
 
-		die( $output );
+		echo $output;
+		die();
 		
 	}
 
