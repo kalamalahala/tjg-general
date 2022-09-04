@@ -45,9 +45,12 @@
 				form_id: form_id
 			},
 			success: function (response) {
-				Object.keys(response).forEach(function (key) {
-					console.log(key, response[key])
-				});
+				// console log each key in the response object
+				for (var key in response) {
+					if (response.hasOwnProperty(key)) {
+						console.log(key + " -> " + response[key]);
+					}
+				}
 			},
 			error: function (response) {
 				console.log(response);
