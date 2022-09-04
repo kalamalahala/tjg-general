@@ -34,9 +34,17 @@
 		var uid = $(this).data("uid");
 		var field_id = $(this).data("field-id");
 		var form_id = $(this).data("form-id");
+
+		// select table row
+		var $row = $(this).closest("tr");
+
+		// fade row out
+		$row.fadeOut();
+
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
 			type: 'POST',
+			dataType: 'json',
 			data: {
 				action: 'tjg_confirm_hire',
 				nonce: tjg_ajax_object.nonce,
@@ -45,11 +53,23 @@
 				form_id: form_id
 			},
 			success: function (response) {
-				console.log(response);
+				// console log each key in the response object
+				$.each(response, function (key, value) {
+					console.log(key + ': ' + value);
+				});
+
+				// if the response is true, remove the row
+				if (response.success) {
+					// add success message in new row below
+					$row.after('<tr><td colspan="5" class="tjg-success-message">' + response.data + '</td></tr>');
+					$row.remove();
+				}
+
 			},
-			error: function (error) {
-				console.log(error);
-			}});
+			error: function (response) {
+				console.log('error');
+			}
+		});
 	});
 
 })(jQuery);
