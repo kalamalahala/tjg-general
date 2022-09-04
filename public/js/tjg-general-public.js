@@ -34,6 +34,10 @@
 		var uid = $(this).data("uid");
 		var field_id = $(this).data("field-id");
 		var form_id = $(this).data("form-id");
+
+		// select table row
+		var row = $(this).closest("tr");
+
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
 			type: 'POST',
@@ -50,6 +54,9 @@
 				$.each(response, function (key, value) {
 					console.log(key + ': ' + value);
 				});
+
+				// remove row from table
+				row.remove();
 			},
 			error: function (response) {
 				console.log(response);
