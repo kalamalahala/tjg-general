@@ -36,7 +36,7 @@
 		var form_id = $(this).data("form-id");
 
 		// select table row
-		var row = $(this).closest("tr");
+		var $row = $(this).closest("tr");
 
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
@@ -56,10 +56,10 @@
 				});
 
 				// remove row from table
-				row.remove();
+				$row.remove();
 			},
 			error: function (response) {
-				console.log(response);
+				console.log('error');
 			}
 		});
 	});
