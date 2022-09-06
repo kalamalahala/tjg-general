@@ -35,11 +35,8 @@
 		var field_id = $(this).data("field-id");
 		var form_id = $(this).data("form-id");
 
-		// select table row
-		var $row = $(this).closest("tr");
-
-		// fade row out
-		$row.fadeOut();
+		// Status text is a span element with ID uid-status
+		var status_text = $("#" + uid + "-status");
 
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
@@ -58,12 +55,7 @@
 					console.log(key + ': ' + value);
 				});
 
-				// if the response is true, remove the row
-				if (response.success) {
-					// add success message in new row below
-					$row.after('<tr><td colspan="5" class="tjg-success-message">' + response.data + '</td></tr>');
-					$row.remove();
-				}
+				$(status_text).text(response.status);
 
 			},
 			error: function (response) {

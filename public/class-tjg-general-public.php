@@ -145,7 +145,7 @@ class Tjg_General_Public {
 
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
 
-		$output = '<div class="tjg-hire-container"><p class="tjg-hire-status">Status: <span class="tjg-hire-status-text">' . $candidate_status . '</span></p><p>
+		$output = '<div class="tjg-hire-container"><p class="tjg-hire-status">Status: <span id="'. $candidate_uid .'-status" class="tjg-hire-status-text">' . $candidate_status . '</span></p><p>
 		<a class="tjg-confirm-hire-button" data-uid="' . $candidate_uid . '" data-form-id="' . $form_id . '" data-field-id="' . $field_id . '">Confirm ' . $candidate_full_name . '</a>
 		</p></div>';
 
@@ -180,11 +180,11 @@ class Tjg_General_Public {
 		$candidate_uid = $candidate_entry[$ajax_field_id];
 		$candidate_first_name = $candidate_entry['3.3'];
 		$candidate_last_name = $candidate_entry['3.6'];
-		$candidate_status = $candidate_entry['33'];
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
-
-		// Set status to "Candidate Approved"
-		$candidate_entry['33'] = 'Candidate Approved';
+		
+		// Set status to Accepted - Pending XCEL
+		$candidate_entry['33'] = 'Accepted - Pending XCEL';
+		$candidate_status = $candidate_entry['33'];
 
 		// Update entry using GFAPI
 		// $updated_entry = GFAPI::update_entry( $candidate_entry );
