@@ -38,6 +38,15 @@
 		// Status text is a span element with ID uid-status
 		var status_text = $("#" + uid + "-status");
 
+		// Disable the button
+		$(this).prop("disabled", true);
+
+		// Add an inline spinner
+		$(this).after('<span class="spinner tjg-spinner tjg-spinner-' + uid + '"></span>');
+
+		// Set the status text to "Processing..."
+		status_text.text("Processing...");
+
 		$.ajax({
 			url: tjg_ajax_object.ajax_url,
 			type: 'POST',
@@ -56,6 +65,12 @@
 				});
 
 				$(status_text).text(response.status);
+
+				// Remove the spinner
+				$(".tjg-spinner-" + uid).remove();
+
+				// Re-enable the button
+				$(".tjg-confirm-hire-button").prop("disabled", false);
 
 			},
 			error: function (response) {
