@@ -30,7 +30,12 @@
  * @author Tyler Karle <tyler.karle@icloud.com>
  */
  
-require_once plugin_dir_path( dirname( __FILE__ ) ) . 'shortcodes/recruiting-overview.php';
+ try {
+	 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'shortcodes/recruiting-overview.php';
+
+ } catch (Exception $e) {
+	 error_log($e->getMessage());
+ }
 
 class Tjg_General_Public
 {
