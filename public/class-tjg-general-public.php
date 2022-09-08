@@ -54,9 +54,6 @@ class Tjg_General_Public
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
-		// Include the Recruiting Overview shortcode
-		include plugin_dir_path(dirname(__FILE__)) . 'public/shortcodes/recruiting-overview.php';
 	}
 
 	/**
@@ -250,7 +247,10 @@ class Tjg_General_Public
 		die('You must be logged in to do that.');
 	}
 
+	// Include the Recruiting Overview shortcode
+	
 	function recruiting_overview_shortcode() {
-		return 'Hello world!';
+		include plugin_dir_path(dirname(__FILE__)) . 'public/shortcodes/recruiting-overview.php';
+		recruiting_overview();
 	}
 }
