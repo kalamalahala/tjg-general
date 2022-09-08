@@ -195,8 +195,12 @@ class Tjg_General_Public {
 			'last_name' => $candidate_last_name,
 			'full_name' => $candidate_full_name,
 			'status' => $candidate_status,
-			'entry' => $candidate_entry,
+			// 'entry' => $candidate_entry,
 		) );
+
+		foreach ( $candidate_entry as $key => $value ) {
+			echo $key . ' => ' . $value;
+		}
 
 		echo $output;
 		die();
