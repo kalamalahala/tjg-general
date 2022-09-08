@@ -1,6 +1,6 @@
 <?php
 
-do_action('qm/debug', 'tjg-general/public/class-tjg-general-public.php');
+do_action('qm/debug', 'it is being included');
 
 function recruiting_overview_shortcode() {
     return 'Hello world!';
