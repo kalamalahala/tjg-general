@@ -195,6 +195,7 @@ class Tjg_General_Public {
 			'last_name' => $candidate_last_name,
 			'full_name' => $candidate_full_name,
 			'status' => $candidate_status,
+			'entry' => $candidate_entry,
 		) );
 
 		echo $output;
