@@ -251,6 +251,7 @@ class Tjg_General_Public
 	
 	function recruiting_overview_shortcode() {
 		include plugin_dir_path(dirname(__FILE__)) . 'public/shortcodes/recruiting-overview.php';
-		recruiting_overview();
+		$output = recruiting_overview();
+		return $output;
 	}
 }
