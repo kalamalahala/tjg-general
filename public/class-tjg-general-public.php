@@ -106,6 +106,14 @@ class Tjg_General_Public
 		));
 	}
 
+	/**
+	 * confirm_hire_button_shortcode
+	 * 
+	 * Creates a button to submit AJAX request to confirm a hire and move them to XCEL Pending.
+	 * 
+	 * @param array $attributes
+	 * @return string
+	 */
 	function confirm_hire_button_shortcode($attributes)
 	{
 		$atts = shortcode_atts(array(
@@ -157,6 +165,13 @@ class Tjg_General_Public
 		return $output;
 	}
 
+	/**
+	 * tjg_confirm_hire
+	 * 
+	 * AJAX function to confirm a hire.
+	 *
+	 * @return json
+	 */
 	function tjg_confirm_hire()
 	{
 		$nonce = $_REQUEST['nonce'];
@@ -220,6 +235,13 @@ class Tjg_General_Public
 		die();
 	}
 
+	/**
+	 * tjg_confirm_hire_nopriv
+	 * 
+	 * This function is called when a user is not logged in and tries to confirm a hire.
+	 *
+	 * @return void
+	 */
 	function tjg_confirm_hire_nopriv()
 	{
 		die('You must be logged in to do that.');
