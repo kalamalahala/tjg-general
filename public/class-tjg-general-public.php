@@ -249,4 +249,8 @@ class Tjg_General_Public
 	{
 		die('You must be logged in to do that.');
 	}
+
+	function recruiting_overview_shortcode() {
+		return 'Hello world!';
+	}
 }
