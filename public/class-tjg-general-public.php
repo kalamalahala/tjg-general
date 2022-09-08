@@ -20,7 +20,8 @@
  * @subpackage Tjg_General/public
  * @author     Tyler Karle <tyler.karle@icloud.com>
  */
-class Tjg_General_Public {
+class Tjg_General_Public
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,11 @@ class Tjg_General_Public {
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,7 +60,8 @@ class Tjg_General_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -73,7 +75,7 @@ class Tjg_General_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( 'tjg-general-css', plugin_dir_url( __FILE__ ) . 'css/tjg-general-public.css', array(), null, 'all' );
+		wp_enqueue_style('tjg-general-css', plugin_dir_url(__FILE__) . 'css/tjg-general-public.css', array(), null, 'all');
 	}
 
 	/**
@@ -81,7 +83,8 @@ class Tjg_General_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -95,30 +98,31 @@ class Tjg_General_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( 'tjg-general-js', plugin_dir_url( __FILE__ ) . 'js/tjg-general-public.js', array( 'jquery' ), $this->version, true );
-		wp_localize_script( 'tjg-general-js', 'tjg_ajax_object', array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce' => wp_create_nonce( 'tjg_general_nonce' ),
-		) );
+		wp_enqueue_script('tjg-general-js', plugin_dir_url(__FILE__) . 'js/tjg-general-public.js', array('jquery'), $this->version, true);
+		wp_localize_script('tjg-general-js', 'tjg_ajax_object', array(
+			'ajax_url' => admin_url('admin-ajax.php'),
+			'nonce' => wp_create_nonce('tjg_general_nonce'),
+		));
 	}
 
-	function confirm_hire_button_shortcode( $attributes ) {
-		$atts = shortcode_atts( array(
+	function confirm_hire_button_shortcode($attributes)
+	{
+		$atts = shortcode_atts(array(
 			'unique_id' => '',
 			'form_id' => '',
 			'field_id' => ''
-		), $attributes );
+		), $attributes);
 		$unique_id = $atts['unique_id'];
 		$form_id = $atts['form_id'];
 		$field_id = $atts['field_id'];
 
-		if ( ! $unique_id ) {
+		if (!$unique_id) {
 			return '<p>No unique ID provided.</p>';
 		}
-		if ( ! $atts['form_id'] ) {
+		if (!$atts['form_id']) {
 			return '<p>No form ID provided.</p>';
 		}
-		if ( ! $atts['field_id'] ) {
+		if (!$atts['field_id']) {
 			return '<p>No field ID provided.</p>';
 		}
 
@@ -132,8 +136,8 @@ class Tjg_General_Public {
 			)
 		);
 
-		$hire_entry = GFAPI::get_entries( $form_id, $hire_entry_query );
-		if ( ! $hire_entry ) {
+		$hire_entry = GFAPI::get_entries($form_id, $hire_entry_query);
+		if (!$hire_entry) {
 			return '<p>No hire entry found.</p>';
 		}
 		$candidate_entry = $hire_entry[0];
@@ -145,17 +149,18 @@ class Tjg_General_Public {
 
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
 
-		$output = '<div class="tjg-hire-container"><p class="tjg-hire-status">Status: <span id="'. $candidate_uid .'-status" class="tjg-hire-status-text">' . $candidate_status . '</span></p><p>
+		$output = '<div class="tjg-hire-container"><p class="tjg-hire-status">Status: <span id="' . $candidate_uid . '-status" class="tjg-hire-status-text">' . $candidate_status . '</span></p><p>
 		<a class="tjg-confirm-hire-button" data-uid="' . $candidate_uid . '" data-form-id="' . $form_id . '" data-field-id="' . $field_id . '">Confirm ' . $candidate_full_name . '</a>
 		</p></div>';
 
 		return $output;
 	}
 
-	function tjg_confirm_hire() {
+	function tjg_confirm_hire()
+	{
 		$nonce = $_REQUEST['nonce'];
-		if ( ! wp_verify_nonce( $nonce, 'tjg_general_nonce' ) ) {
-			die( 'Invalid nonce.' );
+		if (!wp_verify_nonce($nonce, 'tjg_general_nonce')) {
+			die('Invalid nonce.');
 		}
 		$ajax_uid = $_REQUEST['uid'];
 		$ajax_form_id = $_REQUEST['form_id'];
@@ -171,9 +176,9 @@ class Tjg_General_Public {
 			)
 		);
 
-		$hire_entry = GFAPI::get_entries( $ajax_form_id, $hire_entry_query );
-		if ( ! $hire_entry ) {
-			die( 'No hire entry found.' );
+		$hire_entry = GFAPI::get_entries($ajax_form_id, $hire_entry_query);
+		if (!$hire_entry) {
+			die('No hire entry found.');
 		}
 
 		$candidate_entry = $hire_entry[0];
@@ -182,29 +187,35 @@ class Tjg_General_Public {
 		$candidate_last_name = $candidate_entry['3.6'];
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
 		$enroll_date = $candidate_entry['38'];
-		
+
 		// Set status to Accepted - Pending XCEL, set enrollment date to today YYYY-MM-DD in string format
 		$candidate_entry['33'] = 'Accepted - Pending XCEL';
-		$candidate_entry['38'] = date( 'Y-m-d' );
+		$candidate_entry['38'] = date('Y-m-d');
 		$candidate_status = $candidate_entry['33'];
 
 		// Update entry using GFAPI
-		// $updated_entry = GFAPI::update_entry( $candidate_entry );
+		try {
+			$updated_entry = GFAPI::update_entry($candidate_entry);
+		} catch (Exception $e) {
+			die('Error updating entry: ' . $e->getMessage());
+		}
 
-		$output = json_encode( array(
-			'uid' => $candidate_uid,
-			'first_name' => $candidate_first_name,
-			'last_name' => $candidate_last_name,
-			'full_name' => $candidate_full_name,
-			'status' => $candidate_status,
-			'enroll_date' => $enroll_date,
-			'new_enroll_date' => $candidate_entry['38'],
-			// 'entry' => $candidate_entry,
-		) );
+		if ($updated_entry) {
+			$output = json_encode(array(
+				'uid' => $candidate_uid,
+				'first_name' => $candidate_first_name,
+				'last_name' => $candidate_last_name,
+				'full_name' => $candidate_full_name,
+				'status' => $candidate_status,
+				'enroll_date' => $enroll_date,
+				'new_enroll_date' => $candidate_entry['38'],
+				// 'entry' => $candidate_entry,
+			));
 
-		echo $output;
+			echo $output;
+		} else {
+			die('Error updating entry.');
+		}
 		die();
-		
 	}
-
 }
