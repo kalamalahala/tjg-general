@@ -20,6 +20,18 @@
  * @subpackage Tjg_General/public
  * @author     Tyler Karle <tyler.karle@icloud.com>
  */
+
+/**
+ * Shortcode callback hooks split into their individual files.
+ * 
+ * @since 0.0.10
+ * @package Tjg_General
+ * @subpackage Tjg_General/public
+ * @author Tyler Karle <tyler.karle@icloud.com>
+ */
+ 
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'shortcodes/recruiting-overview.php';
+
 class Tjg_General_Public
 {
 
@@ -217,5 +229,10 @@ class Tjg_General_Public
 			die('Error updating entry.');
 		}
 		die();
+	}
+
+	function tjg_confirm_hire_nopriv()
+	{
+		die('You must be logged in to do that.');
 	}
 }
