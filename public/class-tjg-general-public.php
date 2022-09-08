@@ -198,11 +198,11 @@ class Tjg_General_Public {
 			// 'entry' => $candidate_entry,
 		) );
 
-		$entry_array = array();
+		$entry_array = array(array());
 
 		foreach ( $candidate_entry as $key => $value ) {
 			// push key and value to $entry_array
-			array_push( $entry_array, $key . ' => ' . $value );
+			array_push( $entry_array, array( $key => $value ) );
 		}
 
 		// json encode entry
