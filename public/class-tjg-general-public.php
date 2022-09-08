@@ -183,8 +183,9 @@ class Tjg_General_Public {
 		$candidate_full_name = $candidate_first_name . ' ' . $candidate_last_name;
 		$enroll_date = $candidate_entry['38'];
 		
-		// Set status to Accepted - Pending XCEL
+		// Set status to Accepted - Pending XCEL, set enrollment date to today YYYY-MM-DD in string format
 		$candidate_entry['33'] = 'Accepted - Pending XCEL';
+		$candidate_entry['38'] = date( 'Y-m-d' );
 		$candidate_status = $candidate_entry['33'];
 
 		// Update entry using GFAPI
@@ -197,6 +198,7 @@ class Tjg_General_Public {
 			'full_name' => $candidate_full_name,
 			'status' => $candidate_status,
 			'enroll_date' => $enroll_date,
+			'new_enroll_date' => $candidate_entry['38'],
 			// 'entry' => $candidate_entry,
 		) );
 
