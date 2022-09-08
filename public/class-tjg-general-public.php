@@ -21,22 +21,6 @@
  * @author     Tyler Karle <tyler.karle@icloud.com>
  */
 
-/**
- * Shortcode callback hooks split into their individual files.
- * 
- * @since 0.0.10
- * @package Tjg_General
- * @subpackage Tjg_General/public
- * @author Tyler Karle <tyler.karle@icloud.com>
- */
- 
- try {
-	 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'shortcodes/recruiting-overview.php';
-
- } catch (Exception $e) {
-	 error_log($e->getMessage());
- }
-
 class Tjg_General_Public
 {
 
