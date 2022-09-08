@@ -250,8 +250,11 @@ class Tjg_General_Public
 	// Include the Recruiting Overview shortcode
 	
 	function recruiting_overview_shortcode() {
+		$form_id = 91;
+		$field_id = 33;
 		include plugin_dir_path(dirname(__FILE__)) . 'public/shortcodes/recruiting-overview.php';
-		$output = recruiting_overview();
+
+		$output = recruiting_overview($form_id, $field_id);
 		return $output;
 	}
 }
