@@ -185,12 +185,13 @@ class Tjg_General {
 			),
 			'ajax_nopriv' => array(
 				'hook' => 'wp_ajax_nopriv_tjg_confirm_hire',
-				'callback' => 'tjg_confirm_hire'
+				'callback' => 'tjg_confirm_hire_nopriv'
 			)
 		);
 		
 		$shortcode_hooks = array(
-			'confirm_hire_button' => 'confirm_hire_button_shortcode'
+			'confirm_hire_button' => 'confirm_hire_button_shortcode',
+			'recruiting_overview' => 'recruiting_overview_shortcode',
 		);
 
 		foreach ( $action_hooks as $action => $script ) {
