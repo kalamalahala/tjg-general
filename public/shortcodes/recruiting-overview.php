@@ -35,9 +35,10 @@ function recruiting_overview($form_id, $field_id) {
     // collect all candidate entries from the form id
     $accepted_pending_xcel_entries = GFAPI::get_entries($form_id, $accepted_pending_xcel_query);
 
-    print '<pre>';
+    echo '<pre>';
     print_r($accepted_pending_xcel_entries);
-    print '</pre>';
+    echo '</pre>';
+    die;
 
     $payload = '';
     $payload .= '<div class="tjg-recruiting-overview">'; // wrapper
