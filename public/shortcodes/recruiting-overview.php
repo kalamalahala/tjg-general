@@ -38,7 +38,6 @@ function recruiting_overview($form_id, $field_id) {
     echo '<pre>';
     print_r($accepted_pending_xcel_entries);
     echo '</pre>';
-    die;
 
     $payload = '';
     $payload .= '<div class="tjg-recruiting-overview">'; // wrapper
