@@ -24,16 +24,20 @@ function recruiting_overview($form_id, $field_id) {
     $accepted_pending_xcel_query = array(
         'status' => 'active',
         'field_filters' => array(
+            'mode' => 'any',
             array(
                 'key' => $field_id,
                 'value' => 'Accepted - Pending XCEL',
-            ),
+            )
         )
     );
 
     // collect all candidate entries from the form id
     $accepted_pending_xcel_entries = GFAPI::get_entries($form_id, $accepted_pending_xcel_query);
 
+    print '<pre>';
+    print_r($accepted_pending_xcel_entries);
+    print '</pre>';
 
     $payload = '';
     $payload .= '<div class="tjg-recruiting-overview">'; // wrapper
