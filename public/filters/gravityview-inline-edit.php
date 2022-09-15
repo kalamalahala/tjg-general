@@ -6,9 +6,9 @@
 
 function change_inline_labels( $labels ) {
     $labels = array(
-        'toggle'   => __( 'Toggle IE', 'gravityview-inline-edit' ),
-        'disabled' => __( 'Enable IE', 'gravityview-inline-edit' ),
-        'enabled'  => __( 'Disable IE', 'gravityview-inline-edit' ),
+        'toggle'   => __( 'Edit Fields', 'gravityview-inline-edit' ),
+        'disabled' => __( 'Edit Fields', 'gravityview-inline-edit' ),
+        'enabled'  => __( 'Disable Edit', 'gravityview-inline-edit' ),
         );
     return $labels;
 }
