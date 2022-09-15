@@ -171,22 +171,26 @@ class Tjg_General {
 		$plugin_public = new Tjg_General_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$action_hooks = array(
-			'scripts' => array(
+			'scripts' => array( 										// Load included Javascript
 				'hook' => 'wp_enqueue_scripts',
 				'callback' => 'enqueue_scripts',
 			),
-			'styles' => array(
+			'styles' => array(											// Load included CSS
 				'hook' => 'wp_enqueue_scripts',
 				'callback' => 'enqueue_styles'
 			),
-			'ajax' => array(
-				'hook' => 'wp_ajax_tjg_confirm_hire',
+			'ajax' => array(											// Load AJAX for Logged In Users
+				'hook' => 'wp_ajax_tjg_confirm_hire',					// Confirm Hire
 				'callback' => 'tjg_confirm_hire'
 			),
-			'ajax_nopriv' => array(
-				'hook' => 'wp_ajax_nopriv_tjg_confirm_hire',
+			'ajax_nopriv' => array(										// Load AJAX for Logged Out Users
+				'hook' => 'wp_ajax_nopriv_tjg_confirm_hire',			
 				'callback' => 'tjg_confirm_hire_nopriv'
-			)
+			),
+			'filters' => array(											// Filters to modify miscellanous content
+				'hook' => 'gravityview-inline-edit/toggle-labels',		// GravityView Inline Edit
+				'callback' => 'change_inline_edit_labels'
+			),
 		);
 		
 		$shortcode_hooks = array(
