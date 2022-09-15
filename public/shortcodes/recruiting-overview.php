@@ -35,9 +35,9 @@ function recruiting_overview($form_id, $field_id) {
     // collect all candidate entries from the form id
     $accepted_pending_xcel_entries = GFAPI::get_entries($form_id, $accepted_pending_xcel_query);
 
-    echo '<pre>';
-    print_r($accepted_pending_xcel_entries);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($accepted_pending_xcel_entries);
+    // echo '</pre>';
 
     // loop through each entry and collect the desired stats
     foreach ($accepted_pending_xcel_entries as $entry) {
