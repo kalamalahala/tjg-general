@@ -196,6 +196,7 @@ class Tjg_General {
 		$shortcode_hooks = array(
 			'confirm_hire_button' => 'confirm_hire_button_shortcode',
 			'recruiting_overview' => 'recruiting_overview_shortcode',
+			'gv_query_string' => 'gv_return_query_string'
 		);
 
 		foreach ( $action_hooks as $action => $script ) {

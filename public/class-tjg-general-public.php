@@ -248,7 +248,8 @@ class Tjg_General_Public
 	}
 
 	// Include the Recruiting Overview shortcode
-	function recruiting_overview_shortcode() {
+	function recruiting_overview_shortcode()
+	{
 		$form_id = 91;
 		$field_id = 33;
 		include plugin_dir_path(dirname(__FILE__)) . 'public/shortcodes/recruiting-overview.php';
@@ -258,10 +259,19 @@ class Tjg_General_Public
 	}
 
 	// Gravity View Filters
-	function change_inline_edit_labels( $labels) {
+	function change_inline_edit_labels($labels)
+	{
 		include plugin_dir_path(dirname(__FILE__)) . 'public/filters/gravityview-inline-edit.php';
-		
-		$output = change_inline_labels( $labels );
+
+		$output = change_inline_labels($labels);
+		return $output;
+	}
+
+	// Maintain filters when using GravityView pagination in Quality Portal
+	function gv_return_query_string() {
+		include plugin_dir_path(dirname(__FILE__)) . 'public/shortcodes/gravityview-return-query-string.php';
+
+		$output = return_query_string();
 		return $output;
 	}
 }
